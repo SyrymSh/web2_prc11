@@ -49,6 +49,14 @@ app.put("/api/items/:id", async (req, res) => {
   res.json(updated);
 });
 
+// Version endpoint (Practice Task 12)
+app.get("/version", (req, res) => {
+  res.json({
+    version: "1.1",
+    updatedAt: "25.01.2025"
+  });
+});
+
 app.delete("/api/items/:id", async (req, res) => {
   await Item.findByIdAndDelete(req.params.id);
   res.json({ message: "Deleted" });
