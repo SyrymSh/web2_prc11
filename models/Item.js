@@ -1,14 +1,11 @@
 import mongoose from "mongoose";
 
-const itemSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true
+const itemSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true, trim: true },
+    price: { type: Number, required: true, min: 0 }
   },
-  price: {
-    type: Number,
-    required: true
-  }
-});
+  { timestamps: true }
+);
 
 export default mongoose.model("Item", itemSchema);
