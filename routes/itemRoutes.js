@@ -8,13 +8,18 @@ import {
   deleteItem
 } from "../controllers/itemController.js";
 
+import { apiKeyAuth } from "../middleware/auth.js";
+
 const router = Router();
 
+// PUBLIC
 router.get("/", getAllItems);
 router.get("/:id", getItemById);
-router.post("/", createItem);
-router.put("/:id", putUpdateItem);
-router.patch("/:id", patchUpdateItem);
-router.delete("/:id", deleteItem);
+
+// PROTECTED
+router.post("/", apiKeyAuth, createItem);
+router.put("/:id", apiKeyAuth, putUpdateItem);
+router.patch("/:id", apiKeyAuth, patchUpdateItem);
+router.delete("/:id", apiKeyAuth, deleteItem);
 
 export default router;
